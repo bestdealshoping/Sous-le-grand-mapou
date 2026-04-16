@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Connexion — Sous le Grand Mapou</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body style="display: flex; align-items: center; justify-content: center; height: 100vh;">
+    <div class="tale-card" style="width: 100%; max-width: 400px; text-align: center;">
+        <h2 style="color: var(--or);">Connexion</h2>
+        <form id="form-connexion">
+            <input type="text" id="user_conn" placeholder="Nom d'utilisateur" required style="width: 90%; padding: 10px; margin-bottom: 15px; border-radius: 5px; border: none;">
+            <input type="password" id="pass_conn" placeholder="Mot de passe" required style="width: 90%; padding: 10px; margin-bottom: 15px; border-radius: 5px; border: none;">
+            <button type="submit" class="btn-start" style="width: 100%; cursor: pointer;">Entrer</button>
+        </form>
+        <p style="margin-top: 15px;">Pas de compte ? <a href="inscription.html" style="color: var(--or);">S'inscrire ici</a></p>
+    </div>
+
+    <script>
+        document.getElementById('form-connexion').onsubmit = function(e) {
+            e.preventDefault();
+            const user = document.getElementById('user_conn').value;
+            const pass = document.getElementById('pass_conn').value;
+            const savedPass = localStorage.getItem('user_' + user);
+
+            if (savedPass && savedPass === pass) {
+                sessionStorage.setItem('isLoggedIn', 'true');
+                window.location.href = "sommaire.html";
+            } else {
+                alert("Nom d'utilisateur ou mot de passe incorrect.");
+            }
+        };
+    </script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Sommaire — Sous le Grand Mapou</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div style="max-width: 800px; margin: auto; padding: 4rem 2rem; text-align: center;">
+        <h1 style="color: var(--or);">Choisissez votre destination</h1>
+        <p>Explorez les trésors de la tradition orale</p>
+
+        <div style="display: flex; gap: 20px; justify-content: center; margin-top: 3rem; flex-wrap: wrap;">
+            <div class="tale-card" onclick="window.location.href='liste-haiti.html'" style="cursor:pointer; flex: 1; min-width: 250px;">
+                <div style="font-size: 4rem;">🇭🇹</div>
+                <h2 style="color: var(--or);">Contes d'Haïti</h2>
+                <p>10 histoires de ruse et de mystère.</p>
+                <span class="btn-start">Explorer</span>
+            </div>
+
+            <div class="tale-card" onclick="window.location.href='liste-afrique.html'" style="cursor:pointer; flex: 1; min-width: 250px;">
+                <div style="font-size: 4rem;">🌍</div>
+                <h2 style="color: var(--or);">Contes d'Afrique</h2>
+                <p>15 histoires de sagesse et de savane.</p>
+                <span class="btn-start">Explorer</span>
+            </div>
+        </div>
+
+        <footer style="margin-top: 4rem; display: flex; justify-content: center; gap: 30px;">
+            <a href="auteur.html" style="color: var(--sable); text-decoration: none;">👤 L'Auteur</a>
+            <a href="editeur.html" style="color: var(--sable); text-decoration: none;">🏢 Woldjy Impact Lab</a>
+        </footer>
+    </div>
+</body>
+    <script>
+        // Tcheke sekirite a anvan nenpòt lòt bagay
+        if (sessionStorage.getItem('isLoggedIn') !== 'true') {
+            window.location.href = "connexion.html";
+        }
+        
+        // Rès kòd ou yo (si genyen) ka vin apre...
+    </script>
+</body>
+
+</html>

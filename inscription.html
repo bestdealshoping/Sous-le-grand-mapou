@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>S'inscrire — Sous le Grand Mapou</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body style="display: flex; align-items: center; justify-content: center; height: 100vh;">
+    <div class="tale-card" style="width: 100%; max-width: 400px; text-align: center;">
+        <h2 style="color: var(--or);">Créer un compte</h2>
+        <form id="form-inscription">
+            <input type="text" id="username" placeholder="Nom d'utilisateur" required style="width: 90%; padding: 10px; margin-bottom: 15px; border-radius: 5px; border: none;">
+            <input type="password" id="password" placeholder="Mot de passe" required style="width: 90%; padding: 10px; margin-bottom: 15px; border-radius: 5px; border: none;">
+            <button type="submit" class="btn-start" style="width: 100%; cursor: pointer;">S'inscrire</button>
+        </form>
+        <p style="margin-top: 15px;">Déjà un compte ? <a href="connexion.html" style="color: var(--or);">Se connecter</a></p>
+    </div>
+
+    <script>
+        document.getElementById('form-inscription').onsubmit = function(e) {
+            e.preventDefault();
+            const user = document.getElementById('username').value;
+            const pass = document.getElementById('password').value;
+            localStorage.setItem('user_' + user, pass);
+            alert("Compte créé avec succès !");
+            window.location.href = "connexion.html";
+        };
+    </script>
+</body>
+</html>

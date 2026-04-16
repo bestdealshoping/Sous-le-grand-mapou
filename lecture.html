@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lecture — Sous le Grand Mapou</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <section id="tales">
+    <div id="affichage-conte">
+        </div>
+    
+    <nav style="display: flex; justify-content: space-between; max-width: 780px; margin: 2rem auto; padding: 0 1rem;">
+        <button onclick="retounenLis()" class="btn-start" style="padding: 0.5rem 1rem; cursor:pointer;">⬅ Retour</button>
+        <button onclick="window.scrollTo({top:0, behavior:'smooth'})" class="btn-start" style="padding: 0.5rem 1rem; cursor:pointer;">Haut ↑</button>
+    </nav>
+    
+    <div style="text-align: center; margin-top: 2rem; border-top: 1px dashed var(--or); padding-top: 1.5rem;">
+    <button onclick="partagerConte()" class="btn-start" style="display: flex; align-items: center; gap: 10px; margin: auto; cursor: pointer;">
+        Partager l'histoire 🔗✨
+    </button>
+</div>
+
+</section>
+
+<script src="contes.js"></script>
+
+<script>
+    // 1. Rekipere ID nan URL la
+    const urlParams = new URLSearchParams(window.location.search);
+    const id = urlParams.get('id');
+
+    // 2. Tcheke si istwaYo egziste epi si li gen ID a
+    const afichaj = document.getElementById('affichage-conte');
+
+    if (typeof istwaYo !== 'undefined' && istwaYo[id]) {
+        const conte = istwaYo[id];
+        afichaj.innerHTML = `
+            <article class="tale-card">
+                <div class="tale-number">CONTE N° ${id}</div>
+                <div class="tale-header-origin">${conte.origine}</div>
+                <h2 class="tale-title">${conte.titre}</h2>
+                <div class="tale-moral-box"><strong>Morale :</strong> ${conte.morale}</div>
+                <div class="tale-body">${conte.corps}</div>
+            </article>
+        `;
+        document.title = conte.titre + " — Sous le Grand Mapou";
+    } else {
+        afichaj.innerHTML = "<h2 style='text-align:center; margin-top:50px;'>Désolé, l'histoire n'a pas pu être chargée.</h2>";
+        console.error("Erreur : istwaYo pa jwenn oswa ID a pa bon. ID kounye a se: " + id);
+    }
+
+    // 3. Fonksyon pou bouton retounen an
+    function retounenLis() {
+        if (parseInt(id) <= 10) {
+            window.location.href = 'liste-haiti.html';
+        } else {
+            window.location.href = 'liste-afrique.html';
+        }
+    }
+    
+    function partagerConte() {
+    const titIstwa = document.querySelector('.tale-title').innerText;
+    // Nou netwaye tèks la pou l pi bèl nan pataje a
+    const moral = document.querySelector('.tale-moral-box').innerText.replace('Morale :', '').trim();
+    const lyenPaj = window.location.href;
+
+    // Yon ti vibrasyon pou di "mwen klike"
+    if (navigator.vibrate) navigator.vibrate(50);
+
+    if (navigator.share) {
+        navigator.share({
+            title: `Sous le Grand Mapou 🌳`,
+            text: `Conte : "${titIstwa}"\n✨ Sagesse : ${moral}\n\n`,
+            url: lyenPaj
+        })
+        .then(() => console.log('Partage réussi'))
+        .catch((err) => console.log('Erreur:', err));
+    } else {
+        // Si nou sou PC oswa file:/// (lokal), nou kopye lyen an
+        const el = document.createElement('textarea');
+        el.value = lyenPaj;
+        document.body.appendChild(el);
+        el.select();
+        document.execCommand('copy');
+        document.body.removeChild(el);
+        
+        alert("🔗 Lien copié ! (Le partage complet s'activera une fois le site publié sur GitHub)");
+    }
+}
+
+
+</script>
+
+
+</body>
+</html>
