@@ -11,3 +11,67 @@ body::before { content: ''; position: fixed; inset: 0; background: linear-gradie
 /* Styles pou Sommaire */
 .toc-item { background: rgba(212,160,23,0.1); padding: 1rem; margin: 0.5rem; border-radius: 10px; cursor: pointer; display: flex; align-items: center; gap: 1rem; }
 .toc-item:hover { background: rgba(212,160,23,0.2); }
+/* ── BACKGROUND MAJIK AK ETWAL ── */
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    /* Kreyasyon zetwal ak radial-gradient */
+    background: 
+        radial-gradient(1.5px 1.5px at 10% 15%, rgba(255,220,100,0.9) 0%, transparent 100%),
+        radial-gradient(1px 1px at 25% 8%, rgba(255,255,200,0.7) 0%, transparent 100%),
+        radial-gradient(2px 2px at 40% 20%, rgba(255,220,100,0.8) 0%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 55% 5%, rgba(255,255,255,0.6) 0%, transparent 100%),
+        radial-gradient(2px 2px at 70% 12%, rgba(255,220,100,0.9) 0%, transparent 100%),
+        radial-gradient(1px 1px at 85% 18%, rgba(255,255,200,0.7) 0%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 92% 7%, rgba(255,255,255,0.5) 0%, transparent 100%),
+        /* Koulè syèl la */
+        linear-gradient(180deg, #0D0520 0%, #1A0A2E 40%, #2C1A0E 100%);
+    z-index: -1;
+    animation: twinklestar 8s ease-in-out infinite;
+}
+
+/* Animasyon pou syèl la bouje yon ti kras */
+@keyframes twinklestar {
+    0%, 100% { opacity: 0.9; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.02); }
+}
+
+/* ── ANIMASYON POU KAT ISTWA YO ── */
+.tale-card {
+    background: rgba(253,246,227,0.06);
+    border: 1px solid rgba(212,160,23,0.3);
+    border-radius: 16px;
+    padding: 2.5rem;
+    max-width: 800px;
+    margin: 2rem auto;
+    backdrop-filter: blur(5px); /* Ti efè glas */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.tale-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(212,160,23,0.15);
+    border-color: var(--or);
+}
+
+/* ── ESTIL POU TIT YO ── */
+.tale-title {
+    font-family: 'Cinzel Decorative', serif;
+    color: var(--or);
+    text-shadow: 0 0 15px rgba(212,160,23,0.4);
+    font-size: 2.2rem;
+    margin-bottom: 0.5rem;
+}
+
+/* Ti dekorasyon anba tit la */
+.tale-title::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 2px;
+    background: var(--or);
+    margin-top: 10px;
+    border-radius: 2px;
+}
